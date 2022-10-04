@@ -9,11 +9,11 @@ Come up with cool ideas to make this API, fun to use. That's it!
 
 ## Contributions 🎃🎃
 
-## **<a href = "https://github.com/K0DEL/Hacktoberfest/blob/master/CONTRIBUTING.md">[Refer the CONTRIBUTING.md to get all the details about the app contributions]</a>**
+## **<a href = "https://github.com/K0DEL/HacktoberFest-2022/blob/master/CONTRIBUTING.md">[Refer the CONTRIBUTING.md to get all the details about the app contributions]</a>**
 
 <p align="center">
     <a href="https://hacktoberfest.digitalocean.com/">
-        <img src="images/HacktoberFest.png" width="70%">
+        <img src="static/images/HacktoberFest.png" width="70%">
     </a>
 </p>
 
