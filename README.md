@@ -24,3 +24,8 @@ Come up with cool ideas to make this API, fun to use. That's it!
 📢 **Register [here](https://hacktoberfest.digitalocean.com) for Hacktoberfest and make four pull requests (PRs) between October 1st-31st to grab free SWAGS 🔥.**
 
 #
+
+## Requirements 💻
+
+Only Things Required are Python and Flask and Yes, A quirk which grants you the ability to think out of the box.
+😉😉
