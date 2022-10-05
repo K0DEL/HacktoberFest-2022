@@ -1,8 +1,30 @@
-h1 {
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 100;
-    letter-spacing: 0px;
-    font-size: 40px;
-    line-height: 1.2;
-    margin-top:200px;
+body {
+    padding: 0;
+    margin: 0;
+}
+
+#log_tail {
+    background-color: #08ffff;
+    background-image: url("https://i.waifu.pics/Txwg1-z.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    padding: 10rem 0;
+}
+
+#log_tail div {
+    height: 50rem;
+    width: 60%;
+    border-radius: 10%;
+    background-color: #E91E63;
+    opacity: 0.6;
+    color: #000000;
+
+}
+
+#log_tail.log-bubble {
+
 }
