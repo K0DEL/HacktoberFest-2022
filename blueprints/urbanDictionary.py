@@ -1,3 +1,4 @@
+# github.com/herbalchappal
 from flask import Blueprint, render_template, request, jsonify
 import requests
 
@@ -25,3 +26,4 @@ def getResultsFromUrbanDictionary():
     response = response.json()
 
     return render_template("urbanDictionary.html", query=query, len=len(response['list']), results=response)
+# END
