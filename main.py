@@ -9,7 +9,10 @@ import random
 import requests
 
 app = Flask(__name__)
+
+# https://github.com/herbalchappal 
 app.register_blueprint(urbanDictionary)
+############## END ################
 
 
 @app.errorhandler(404)
