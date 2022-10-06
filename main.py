@@ -1,6 +1,7 @@
 from flask import Flask, render_template, jsonify, abort, request
 from handlers.Internfreak import fetch_posts
 import handlers.bypassers as bypassers
+from blueprints.urbanDictionary import urbanDictionary
 from dateutil import relativedelta
 from datetime import datetime
 import json
@@ -8,6 +9,7 @@ import random
 import requests
 
 app = Flask(__name__)
+app.register_blueprint(urbanDictionary)
 
 
 @app.errorhandler(404)
