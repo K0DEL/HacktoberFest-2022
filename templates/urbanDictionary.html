@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Fetch results from Urban Dictionary</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        li {
+            padding-bottom: 16px;
+        }
+
+        body {
+            padding: 16px;
+        }
+
+        h3, h5 {
+            font-weight: bolder;
+        }
+
+        input {
+            padding: 8px;
+        }
+    </style>
+</head>
+<body>
+<h3>Get Results from Urban Dictionary</h3>
+<p>Find out what others think about your name</p>
+<div class="d-flex flex-row">
+    <div>
+        <form method="post" action="/urbanDictionary">
+            <input type="text" name="query" placeholder="Enter any word that you can think of">
+            <button class="btn btn-primary" type="submit">get results</button>
+        </form>
+    </div>
+</div>
+<br/>
+{% if len > 0 %}
+    <h5>Results for - "{{ query }}"</h5>
+{% endif %}
+<ul>
+    {% for i in range(0, len) %}
+        <li>{{ results['list'][i]['definition'] }}</li>
+    {% endfor %}
+</ul>
+</body>
+</html>
