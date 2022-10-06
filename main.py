@@ -4,6 +4,8 @@ import handlers.bypassers as bypassers
 from dateutil import relativedelta
 from datetime import datetime
 import json
+import random
+import requests
 
 app = Flask(__name__)
 
@@ -83,6 +85,13 @@ def bypass_links():
 
     return jsonify({"ok": True, "url": bypassed_link})
 
+@app.route("/meme_template",methods=["POST","GET"])
+def memer():
+    data=requests.get('https://api.imgflip.com/get_memes')
+    data=data.json()["data"]["memes"]
+    a=random.randint(1,99)
+    data=data[a]["url"]
+    return render_template("temp.html",data=data)
 
 if __name__ == "__main__":
     app.run(host="localhost", port=3000, threaded=True)
