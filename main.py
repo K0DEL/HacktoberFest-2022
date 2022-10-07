@@ -9,11 +9,21 @@ import json
 import random
 import requests
 
+from blueprints.user import user_blueprint
+from blueprints.post import post_blueprint
+from prisma import Prisma, register
+
+db = Prisma()
+db.connect()
+register(db)
 app = Flask(__name__)
 
 # https://github.com/herbalchappal 
 app.register_blueprint(urbanDictionary)
 ############## END ################
+
+app.register_blueprint(user_blueprint, url_prefix='/user')
+app.register_blueprint(post_blueprint, url_prefix='/post')
 
 
 @app.errorhandler(404)
