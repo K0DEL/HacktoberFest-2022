@@ -1,4 +1,7 @@
 Flask==2.2.2
 requests
-bs4
 python-dateutil==2.8.2
+cloudscraper
+bs4
+lxml
+

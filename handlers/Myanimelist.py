@@ -1,4 +1,3 @@
-import json
 import requests
 from bs4 import BeautifulSoup
 anime_info = dict()
@@ -82,10 +81,18 @@ def extract_songs(tag):
     for song in songs:
         index = song.find(
             "span", class_="theme-song-index").text.split(":")[0].strip()
-        theme_song = song.find(
-            "span", class_="theme-song-title").text.strip().strip('\"')
         artist = song.find("span", class_="theme-song-artist").text.strip()
         episodes = song.find("span", class_="theme-song-episode").text.strip()
+        try:
+            theme_song = song.find(
+                "span", class_="theme-song-title").text.strip().strip('\"')
+        except:
+            song.find(
+            "span", class_="theme-song-index").extract()
+            song.find("span", class_="theme-song-artist").extract()
+            song.find("span", class_="theme-song-episode").extract()
+            theme_song = song.text.strip().strip('\"')
+
         song_list.append({
             "Index": index,
             "Song": theme_song,
