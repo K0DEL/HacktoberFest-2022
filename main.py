@@ -1,5 +1,6 @@
 from flask import Flask, render_template, jsonify, abort, request
 from handlers.Internfreak import fetch_posts
+from handlers.Myanimelist import MAL
 import handlers.bypassers as bypassers
 from blueprints.urbanDictionary import urbanDictionary
 from dateutil import relativedelta
@@ -33,6 +34,12 @@ def internfreak():
     else:
         abort(404, description="Resource not found")
 
+
+
+@app.route('/anime/<mal_id>')
+def myanimelist(mal_id):
+    anime_info = MAL(mal_id)
+    return jsonify(anime_info)
 
 @app.route("/date_between")
 def date_between():
