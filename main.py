@@ -1,5 +1,6 @@
 from flask import Flask, render_template, jsonify, abort, request
 from handlers.Internfreak import fetch_posts
+from handlers.Myanimelist import MAL
 from dateutil import relativedelta
 from datetime import datetime
 
@@ -23,6 +24,13 @@ def internfreak():
         return jsonify(posts)
     else:
         abort(404, description="Resource not found")
+
+
+@app.route('/anime/<mal_id>')
+def myanimelist(mal_id):
+    anime_info = MAL(mal_id)
+    return jsonify(anime_info)
+
 
 @app.route('/date_between')
 def date_between():
@@ -54,6 +62,6 @@ def date_between():
             "error": str(e)
         }
 
+
 if __name__ == '__main__':
     app.run(host="localhost", port=3000, threaded=True)
-
