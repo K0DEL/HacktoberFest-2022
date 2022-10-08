@@ -4,4 +4,5 @@ python-dateutil==2.8.2
 cloudscraper
 bs4
 lxml
+aiohttp
 

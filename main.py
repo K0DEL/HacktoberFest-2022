@@ -1,6 +1,7 @@
 from flask import Flask, render_template, jsonify, abort, request
 from handlers.Internfreak import fetch_posts
 from handlers.Myanimelist import MAL
+from handlers.Fakku import Fakku
 import handlers.bypassers as bypassers
 from blueprints.urbanDictionary import urbanDictionary
 from dateutil import relativedelta
@@ -26,7 +27,7 @@ def index():
     return render_template("index.html")
 
 
-@app.route("/internfreak/latest")
+@app.route("/internfreak/latest",methods=["GET"])
 def internfreak():
     posts = fetch_posts()
     if posts:
@@ -36,12 +37,18 @@ def internfreak():
 
 
 
-@app.route('/anime/<mal_id>')
+@app.route('/anime/<mal_id>',methods=["GET"])
 def myanimelist(mal_id):
     anime_info = MAL(mal_id)
     return jsonify(anime_info)
 
-@app.route("/date_between")
+@app.route('/fakku/<id>',methods=["GET"])
+async def fakku(id):
+    url = "https://www.fakku.net/hentai/" + id
+    doujin_info = await Fakku.scrape(url)
+    return jsonify(doujin_info)
+
+@app.route("/date_between", methods=["POST"])
 def date_between():
     try:
         args = request.args
@@ -68,7 +75,7 @@ def date_between():
         return {"error": str(e)}
 
 
-@app.route("/bypass")
+@app.route("/bypass", methods=["POST"])
 def bypass_links():
 
     data = request.data.strip()
