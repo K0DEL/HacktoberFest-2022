@@ -122,5 +122,22 @@ def memer():
     data=data[a]["url"]
     return render_template("temp.html",data=data)
 
+@app.route("/Animal/<an>",methods=["GET","POST"])
+def ip(an):
+    data=requests.get("https://dog.ceo/api/breeds/image/random")
+    data1=requests.get("https://aws.random.cat/meow?ref=apilist.fun")
+    data=data.json()["message"]
+    data1=data1.json()["file"]
+    Mess="Only Cat and Dog are available"
+    if(an=="cat"):
+        return render_template("animal.html",data=data1)
+    elif(an=="dog"):
+        return render_template("animal.html",data=data)
+    else: 
+        return jsonify(Mess)
+    
+    
+    
+
 if __name__ == "__main__":
     app.run(host="localhost", port=3000, threaded=True)
