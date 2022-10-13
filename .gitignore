@@ -4,3 +4,5 @@
 *.vscode*
 *env 
 ./*.py
+database.db
+database.db-journal
