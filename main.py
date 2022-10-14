@@ -3,28 +3,28 @@ from handlers.Internfreak import fetch_posts
 from handlers.Myanimelist import MAL
 from handlers.Fakku import Fakku
 import handlers.bypassers as bypassers
-from blueprints.urbanDictionary import urbanDictionary
+# from blueprints.urbanDictionary import urbanDictionary
 from dateutil import relativedelta
 from datetime import datetime
 import json
 import random
 import requests
 
-from blueprints.user import user_blueprint
-from blueprints.post import post_blueprint
-from prisma import Prisma, register
+# from blueprints.user import user_blueprint
+# from blueprints.post import post_blueprint
+# from prisma import Prisma, register
 
-db = Prisma()
-db.connect()
-register(db)
+# db = Prisma()
+# db.connect()
+# register(db)
 app = Flask(__name__)
 
 # https://github.com/herbalchappal 
-app.register_blueprint(urbanDictionary)
+# app.register_blueprint(urbanDictionary)
 ############## END ################
 
-app.register_blueprint(user_blueprint, url_prefix='/user')
-app.register_blueprint(post_blueprint, url_prefix='/post')
+# app.register_blueprint(user_blueprint, url_prefix='/user')
+# app.register_blueprint(post_blueprint, url_prefix='/post')
 
 
 @app.errorhandler(404)
@@ -136,7 +136,11 @@ def ip(an):
     else: 
         return jsonify(Mess)
     
-    
+@app.route("/Fox",methods=["POST","GET"])
+def maurya():
+    data=requests.get("https://randomfox.ca/floof/?ref=apilist.fun")
+    data=data.json()["image"]
+    return render_template("fox.html",data=data)
     
 
 if __name__ == "__main__":
