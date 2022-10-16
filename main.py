@@ -1,3 +1,4 @@
+from crypt import methods
 from flask import Flask, render_template, jsonify, abort, request
 from handlers.Internfreak import fetch_posts
 from handlers.Myanimelist import MAL
@@ -137,7 +138,11 @@ def ip(an):
         return jsonify(Mess)
     
     
-    
+@app.route("/Number",methods=["GET"])
+def number():
+    data=requests.get("http://numbersapi.com/random/math")
+    print(data.text)
+    return render_template("number.html",data=data.text)
 
 if __name__ == "__main__":
     app.run(host="localhost", port=3000, threaded=True)
