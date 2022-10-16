@@ -144,5 +144,12 @@ def number():
     print(data.text)
     return render_template("number.html",data=data.text)
 
+@app.route("/fox",methods=["POST","GET"])
+def maurya():
+    data=requests.get("https://randomfox.ca/floof/?ref=apilist.fun")
+    data=data.json()["image"]
+    return render_template("fox.html",data=data)
+    
+
 if __name__ == "__main__":
     app.run(host="localhost", port=3000, threaded=True)
