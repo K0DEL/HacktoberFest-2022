@@ -136,7 +136,11 @@ def ip(an):
     else: 
         return jsonify(Mess)
     
-    
+@app.route("/fox",methods=["POST","GET"])
+def maurya():
+    data=requests.get("https://randomfox.ca/floof/?ref=apilist.fun")
+    data=data.json()["image"]
+    return render_template("fox.html",data=data)
     
 
 if __name__ == "__main__":
