@@ -1,0 +1,8 @@
+.boxed {
+    border: 2px solid green ;
+    align-content: center;
+    margin:10% 30% 10% 30%;
+    padding: 5% 10% 10% 10%;
+    height: auto;
+    width: fit-content;
+  } 
