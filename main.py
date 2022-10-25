@@ -1,4 +1,4 @@
-from crypt import methods
+# from crypt import methods
 from flask import Flask, render_template, jsonify, abort, request
 from handlers.Internfreak import fetch_posts
 from handlers.Myanimelist import MAL
@@ -20,7 +20,7 @@ db.connect()
 register(db)
 app = Flask(__name__)
 
-# https://github.com/herbalchappal 
+# https://github.com/herbalchappal
 app.register_blueprint(urbanDictionary)
 ############## END ################
 
@@ -38,7 +38,7 @@ def index():
     return render_template("index.html")
 
 
-@app.route("/internfreak/latest",methods=["GET"])
+@app.route("/internfreak/latest", methods=["GET"])
 def internfreak():
     posts = fetch_posts()
     if posts:
@@ -47,17 +47,18 @@ def internfreak():
         abort(404, description="Resource not found")
 
 
-
-@app.route('/anime/<mal_id>',methods=["GET"])
+@app.route('/anime/<mal_id>', methods=["GET"])
 def myanimelist(mal_id):
     anime_info = MAL(mal_id)
     return jsonify(anime_info)
 
-@app.route('/fakku/<id>',methods=["GET"])
+
+@app.route('/fakku/<id>', methods=["GET"])
 async def fakku(id):
     url = "https://www.fakku.net/hentai/" + id
     doujin_info = await Fakku.scrape(url)
     return jsonify(doujin_info)
+
 
 @app.route("/date_between", methods=["POST"])
 def date_between():
@@ -88,7 +89,6 @@ def date_between():
 
 @app.route("/bypass", methods=["POST"])
 def bypass_links():
-
     data = request.data.strip()
     if len(data) == 0:
         return jsonify({"ok": False, "message": "No data provided"})
@@ -115,41 +115,52 @@ def bypass_links():
 
     return jsonify({"ok": True, "url": bypassed_link})
 
-@app.route("/meme_template",methods=["POST","GET"])
+
+@app.route("/meme_template", methods=["POST", "GET"])
 def memer():
-    data=requests.get('https://api.imgflip.com/get_memes')
-    data=data.json()["data"]["memes"]
-    a=random.randint(1,99)
-    data=data[a]["url"]
-    return render_template("temp.html",data=data)
+    data = requests.get('https://api.imgflip.com/get_memes')
+    data = data.json()["data"]["memes"]
+    a = random.randint(1, 99)
+    data = data[a]["url"]
+    return render_template("temp.html", data=data)
 
-@app.route("/Animal/<an>",methods=["GET","POST"])
+
+@app.route("/Animal/<an>", methods=["GET", "POST"])
 def ip(an):
-    data=requests.get("https://dog.ceo/api/breeds/image/random")
-    data1=requests.get("https://aws.random.cat/meow?ref=apilist.fun")
-    data=data.json()["message"]
-    data1=data1.json()["file"]
-    Mess="Only Cat and Dog are available"
-    if(an=="cat"):
-        return render_template("animal.html",data=data1)
-    elif(an=="dog"):
-        return render_template("animal.html",data=data)
-    else: 
+    data = requests.get("https://dog.ceo/api/breeds/image/random")
+    data1 = requests.get("https://aws.random.cat/meow?ref=apilist.fun")
+    data = data.json()["message"]
+    data1 = data1.json()["file"]
+    Mess = "Only Cat and Dog are available"
+    if (an == "cat"):
+        return render_template("animal.html", data=data1)
+    elif (an == "dog"):
+        return render_template("animal.html", data=data)
+    else:
         return jsonify(Mess)
-    
-    
-@app.route("/Number",methods=["GET"])
-def number():
-    data=requests.get("http://numbersapi.com/random/math")
-    print(data.text)
-    return render_template("number.html",data=data.text)
 
-@app.route("/fox",methods=["POST","GET"])
+
+@app.route("/Number", methods=["GET"])
+def number():
+    data = requests.get("http://numbersapi.com/random/math")
+    print(data.text)
+    return render_template("number.html", data=data.text)
+
+
+@app.route("/fox", methods=["POST", "GET"])
 def maurya():
-    data=requests.get("https://randomfox.ca/floof/?ref=apilist.fun")
-    data=data.json()["image"]
-    return render_template("fox.html",data=data)
-    
+    data = requests.get("https://randomfox.ca/floof/?ref=apilist.fun")
+    data = data.json()["image"]
+    return render_template("fox.html", data=data)
+
+
+@app.route("/waifu", methods=["GET"])
+def get_a_waifu():
+    data = requests.get("https://api.waifu.im/random/")
+    data = data.json()['images'][0]
+    print(data)
+    return render_template("waifu.html", data=data)
+
 
 if __name__ == "__main__":
     app.run(host="localhost", port=3000, threaded=True)
