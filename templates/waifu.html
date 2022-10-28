@@ -3,12 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <title>Get a Waifu</title>
+    <link rel="stylesheet" href="../static/css/waifu.css"/>
 </head>
 <body>
 <nav>
-    <h1>Get a Waifu</h1>
+    <h1 class="active">Get A Waifu</h1>
+    <ul>
+        <li class="active"><a href="#">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Contact</a></li>
+    </ul>
 </nav>
+<div class="image">
+    <img  src="{{ data.url }}" alt="waifu">
+    <img  src="{{ data.url }}" alt="waifu">
+</div>
 
-<img src="{{ data.url }}" alt="waifu">
 </body>
 </html>
