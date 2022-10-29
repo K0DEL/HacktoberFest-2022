@@ -158,8 +158,13 @@ def maurya():
 def get_a_waifu():
     data = requests.get("https://api.waifu.im/random/")
     data = data.json()['images'][0]
-    print(data)
     return render_template("waifu.html", data=data)
+
+
+@app.route("/lorem", methods=["GET"])
+def lorem_picsum():
+    data = requests.get("https://picsum.photos/600")
+    return render_template("waifu.html",data=data)
 
 
 if __name__ == "__main__":
