@@ -1,4 +1,6 @@
 # from crypt import methods
+import ast
+
 from flask import Flask, render_template, jsonify, abort, request
 from handlers.Internfreak import fetch_posts
 from handlers.Myanimelist import MAL
@@ -161,10 +163,18 @@ def get_a_waifu():
     return render_template("waifu.html", data=data)
 
 
-@app.route("/lorem", methods=["GET"])
-def lorem_picsum():
-    data = requests.get("https://picsum.photos/600")
-    return render_template("waifu.html",data=data)
+@app.route('/crud', methods=['GET'])
+def query_records():
+    name = request.args.get('name')
+    with open('./tmp/data.txt', 'r') as f:
+        data = f.read()
+        records = ast.literal_eval(data)
+        print(records,type(records))
+        return jsonify(records)
+        # for record in records:
+        #     if record['name'] == name:
+        #         return jsonify(record)
+        # return jsonify({'error': 'data not found'})
 
 
 if __name__ == "__main__":
